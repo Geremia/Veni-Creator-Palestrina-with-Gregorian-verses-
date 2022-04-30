@@ -1,8 +1,8 @@
-\version "2.18.2"
+\version "2.23.1"
 \include "deutsch.ly"
 #(set-global-staff-size 15)
-% #(set-default-paper-size "letter")
-#(ly:set-option 'point-and-click #f)
+#(set-default-paper-size "letter")
+%#(ly:set-option 'point-and-click #f)
 
 \header
 {
@@ -11,12 +11,17 @@
   tagline= ""
 }
 
+\markup {
+  \epsfile #Y #12 "EPSs/Incipit.eps"
+}
+
 \paper
 	{
-	top-margin = 1.6 \cm
-	bottom-margin = 1 \cm
-	left-margin = 1.8 \cm
-	right-margin = 1.8 \cm
+	%annotate-spacing = ##t
+	top-margin = 0.5 \in
+	bottom-margin = 0.5 \in
+	left-margin = 0.5 \in
+	right-margin = 0.5 \in
 	ragged-bottom = ##f
 	ragged-last-bottom = ##t
         print-page-number = ##f
@@ -25,7 +30,7 @@
         score-system-spacing = #'((basic-distance . 17) (minimum-distance . 14) (padding . 5) (strechability . 250))
 %	systems-per-page = 3
 %	min-systems-per-page = 3
-%	markup-system-spacing #'basic-distance = #12
+%	markup-system-spacing.basic-distance = #12
 %	print-all-headers = ##t
 	print-first-page-number = ##f
         oddFooterMarkup=\markup   \fill-line { "" \fromproperty #'page:page-number-string }
@@ -37,7 +42,6 @@
 global = {
 	\key c \major
 	\time 2/2 \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11 \bar "||" % Intonation
         \newSpacingSection
         \set Score.currentBarNumber = #1
         \set Score.measureLength = #(ly:make-moment 2/1)
@@ -47,82 +51,16 @@ global = {
 
 	ficta = { \once \set suggestAccidentals = ##t }
 	
-	forget = #(define-music-function (parser location music) (ly:music?) #{
+	forget = #(define-music-function (music) (ly:music?) #{
 		\accidentalStyle forget
 		$music
 		\accidentalStyle default
 		#})
-        % \mark \markup { \fontsize #-3 \note  #"1" #1 = \fontsize #-3 \note #"1." #1 }
-
-        
-
-incipitcantus = \markup { \score {
-	{
-	\set Staff.instrumentName = \markup { \fontsize #1 "Cantus" }
-	\key c \major
-	\clef violin
-	s4 \bar ""
-	}
-	\layout  {
-	raggedright = ##t
-	indent = 1.8 \cm
-	line-width = 2.6 \cm
-	\context { \Staff \remove Time_signature_engraver }
-	\override Staff.Clef.Y-extent = #'(0 . 0)
-	}} \hspace #1 }
-	
-      
-incipitaltus = \markup { \score {
-	{
-	\set Staff.instrumentName = \markup { \fontsize #1 "Altus" }
-	\key c \major
-	\clef mezzosoprano
-	s4 \bar ""
-	}
-	\layout  {
-	raggedright = ##t
-	indent = 1.8 \cm
-	line-width = 2.6 \cm
-	\context { \Staff \remove Time_signature_engraver }
-	\override Staff.Clef.Y-extent = #'(0 . 0)
-	}} \hspace #1 }
-
-
-incipittenor = \markup { \score {
-	{
-	\set Staff.instrumentName = \markup { \fontsize #1 "Tenor" }
-	\key c \major
-	\clef alto
-	s4 \bar ""
-	}
-	\layout  {
-	raggedright = ##t
-	indent = 1.8 \cm
-	line-width = 2.6 \cm
-	\context { \Staff \remove Time_signature_engraver }
-	\override Staff.Clef.Y-extent = #'(0 . 0)
-	}} \hspace #1 }
-         
-      
-incipitbassus = \markup { \score {
-	{
-	\set Staff.instrumentName = \markup { \fontsize #1 "Bassus" }
-	\key c \major
-	\clef varbaritone
-	s4 \bar ""
-	}
-	\layout  {
-	raggedright = ##t
-	indent = 1.8 \cm
-	line-width = 2.6 \cm
-	\context { \Staff \remove Time_signature_engraver }
-	\override Staff.Clef.Y-extent = #'(0 . 0)
-	}} \hspace #1 }
+        % \mark \markup { \fontsize #-3 \note  {1} #1 = \fontsize #-3 \note {1.} #1 }
 
 
 cantus =  \relative c''
 	{
-        s4*11 %	- Intonation in the tenor
 	c1 g
         a1 c
 	d1 c
@@ -165,7 +103,6 @@ cantus =  \relative c''
         
 altus =  \relative c'
 	{
-        s4*11 % Intonation in the tenor
 	R\breve
 	f1 c2 e
 	f2 g a4 h c2~
@@ -208,9 +145,6 @@ altus =  \relative c'
 
 tenor =  \relative c'
 	{
-	\override Stem.transparent = ##t
-        g4 a g^( f) g a^( g) c( d) c c % Intonation
-        \override Stem.transparent = ##f
 	R\breve
 	R\breve
 	R\breve
@@ -253,7 +187,6 @@ tenor =  \relative c'
 
 bassus  =  \relative c
 	{
-        s4*11 % Intonation in the tenor
 	R\breve
         R\breve
 	R\breve
@@ -317,7 +250,6 @@ lyricsaltus = \lyricmode {
 
 
 lyricstenor = \lyricmode {
-	Ve -- ni Cre -- a -- tor Spi -- ri -- tus,
         Men -- tes tu -- o -- _ rum vi -- _ si -- ta,
         im -- ple su -- per -- _ _ _ _ _ na gra -- _ _ _ ti -- a,
         im -- ple su -- per -- na gra -- _ _ _ _ _ ti -- a __ _ _ _
@@ -344,7 +276,7 @@ lyricsbassus = \lyricmode {
 
 	\new Staff << \global
 	\new Voice="v1" {
-		\set Staff.instrumentName=\incipitcantus
+		\set Staff.instrumentName="Cantus"
 		\set Staff.midiInstrument = "reed organ"
 		\clef violin
 		\cantus }
@@ -354,7 +286,7 @@ lyricsbassus = \lyricmode {
 
 	\new Staff << \global
 	\new Voice="v2" {
-		\set Staff.instrumentName=\incipitaltus
+		\set Staff.instrumentName="Altus"
 		\set Staff.midiInstrument = "reed organ"
                 \clef violin % "G_8"
 		\altus}
@@ -364,7 +296,7 @@ lyricsbassus = \lyricmode {
 
 	\new Staff << \global
 	\new Voice="v3" {
-		\set Staff.instrumentName=\incipittenor
+		\set Staff.instrumentName="Tenor"
 		\set Staff.midiInstrument = "reed organ"
 		\clef "G_8"
 		\tenor }
@@ -374,7 +306,7 @@ lyricsbassus = \lyricmode {
 
 	\new Staff << \global
 	\new Voice="v4" {
-		\set Staff.instrumentName=\incipitbassus
+		\set Staff.instrumentName="Bassus"
 		\set Staff.midiInstrument = "reed organ"
 		\clef bass 
 		\bassus }
@@ -387,7 +319,7 @@ lyricsbassus = \lyricmode {
 
 	\layout
 	{
-	indent = 2.5\cm
+	%indent = 2.5\cm
 	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
 %	\context { \Lyrics \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #2 }
 %	\context { \Lyrics \override LyricText.font-size = #1 }
@@ -404,87 +336,11 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   QUI PARACLITUS DICERIS - PLAINCHANT
 
-global = {
-	\key c \major
-        \override Staff.TimeSignature.stencil = #'()
-        \set Score.timing = ##f
-	\time 2/2 \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 9/4)
-        \skip 4*9
-        \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 10/4)
-        }
-
-tenor =  \relative c'
-	{
-	\override Stem.transparent = ##t
-        g4 a  g^( f) g a^( g) c( d) c c \bar "|" |
-        c4 g a c( d) c d e d \bar "|" |
-        c4 d( e) c a^( g) c( d) g, a c \bar "|"
-        h4( c) a g^( f) a c g f g \bar "||" |	
-	}
-
-lyricstenor = \lyricmode {
-        Qui Pa -- ra -- cli -- tus di -- ce -- ris,
-        do -- num De -- i al -- tis -- si -- mi,
-        fons vi -- vus, i -- gnis, ca -- ri -- tas,
-        et spi -- ri -- ta -- lis un -- cti -- o.
-        }
-
-\score	
-        {
-        % \transpose {    
-	\new ChoirStaff \with { \override StaffGrouper.staff-staff-spacing.basic-distance = #12 }
-	<<
-
-	\new Staff << \global
-	\new Voice="v3" {
-		\set Staff.midiInstrument = "reed organ"
-		\clef "G_8"
-		\tenor }
-	\new Lyrics \lyricsto "v3" {\lyricstenor }
-	>>
-        >>
-	% } % transpose
-	
-
-	\layout
-	{
-	indent = 0\cm
-	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
-%	\context { \Lyrics \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #2 }
-%	\context { \Lyrics \override LyricText.font-size = #1 }
-%	\context { \Staff \override InstrumentName.X-offset = #'-25 }
-%	\context { \Voice \override Slur.transparent = ##t }
-%	\context { \Voice \override AccidentalSuggestion.avoid-slur = #'ignore }
-%	\context { \Voice \override AccidentalSuggestion.outside-staff-priority = ##f }
-	\context { \Score \override BarNumber.padding = #2 }
-	\context { \Voice \override NoteHead.style = #'baroque }
-	}
-    }
-    
+\markup {
+  \epsfile #Y #24 "EPSs/1.eps"
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   TU SEPTIFORMIS MUNERE
-
-
-
-
-	
-global = {
-	\key c \major
-	\time 2/2 \set Score.measureLength = #(ly:make-moment 2/1)
-        \skip 1*2*37 \bar "|."
-	}
-
-	ficta = { \once \set suggestAccidentals = ##t }
-	
-	forget = #(define-music-function (parser location music) (ly:music?) #{
-		\accidentalStyle forget
-		$music
-		\accidentalStyle default
-		#})
        
 
 cantus =  \relative c''
@@ -776,7 +632,7 @@ lyricsbassus = \lyricmode {
 
 	\layout
 	{
-	indent = 1.6 \cm
+	%indent = 1.6 \cm
 %	\context { \Lyrics \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #2 }
 %	\context { \Lyrics \override LyricText.font-size = #1 }
 	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
@@ -794,60 +650,9 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ACCENDE LUMEN SENSIBUS - PLAINCHANT
 
-global = {
-	\key c \major
-        \override Staff.TimeSignature.stencil = #'()
-        \set Score.timing = ##f
-	\time 2/2 \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 9/4)
-        \skip 4*9
-        \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 10/4)
-        }
-
-tenor =  \relative c'
-	{
-	\override Stem.transparent = ##t
-        g4 a  g^( f) g a^( g) c( d) c c \bar "|" |
-        c4 g a c( d) c d e d \bar "|" |
-        c4 d( e) c a^( g) c( d) g, a c \bar "|"
-        h4( c) a g^( f) a c g f g \bar "||" |	
-	}
-
-lyricstenor = \lyricmode {
-        Ac -- cen -- de lu -- men sen -- si -- bus,
-        in -- fun -- de~a -- mo -- rem cor -- di -- bus,
-        in -- fir -- ma no -- stri cor -- po -- ris,
-        vir -- tu -- te fir -- mans per -- pe -- ti.
-        }
-
-\score	
-        {
-        % \transpose {    
-	\new ChoirStaff \with { \override StaffGrouper.staff-staff-spacing.basic-distance = #12 }
-	<<
-
-	\new Staff << \global
-	\new Voice="v3" {
-		\set Staff.midiInstrument = "reed organ"
-		\clef "G_8"
-		\tenor }
-	\new Lyrics \lyricsto "v3" {\lyricstenor }
-	>>
-        >>
-	% } % transpose
-	
-
-	\layout
-	{
-	indent = 0\cm
-	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
-	\context { \Score \override BarNumber.padding = #2 }
-	}
-    }
-
+\markup {
+\epsfile #X #100 "EPSs/3.eps"
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%   HOSTEM REPELLAS LONGIUS
 
@@ -861,7 +666,7 @@ global = {
 
 	ficta = { \once \set suggestAccidentals = ##t }
 	
-	forget = #(define-music-function (parser location music) (ly:music?) #{
+	forget = #(define-music-function (music) (ly:music?) #{
 		\accidentalStyle forget
 		$music
 		\accidentalStyle default
@@ -1218,7 +1023,7 @@ lyricsbassus = \lyricmode {
 
 	\layout
 	{
-	indent = 1.6 \cm
+	%indent = 1.6 \cm
 %	\context { \Lyrics \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #2 }
 %	\context { \Lyrics \override LyricText.font-size = #1 }
 	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
@@ -1237,60 +1042,9 @@ lyricsbassus = \lyricmode {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PER TE SCIAMUS DA PATRE - PLAINCHANT
 
 
-global = {
-	\key c \major
-        \override Staff.TimeSignature.stencil = #'()
-        \set Score.timing = ##f
-	\time 2/2 \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 9/4)
-        \skip 4*9
-        \set Score.measureLength = #(ly:make-moment 11/4)
-        \skip 4*11
-        \set Score.measureLength = #(ly:make-moment 10/4)
-        }
-
-tenor =  \relative c'
-	{
-	\override Stem.transparent = ##t
-        g4 a  g^( f) g a^( g) c( d) c c \bar "|" |
-        c4 g a c( d) c d e d \bar "|" |
-        c4 d( e) c a^( g) c( d) g, a c \bar "|"
-        h4( c) a g^( f) a c g f g \bar "||" |	
-	}
-
-lyricstenor = \lyricmode {
-        Per te sci -- a -- mus da Pa -- trem,
-        nos -- ca -- mus at -- que Fi -- li -- um,
-        te u -- tri -- us -- que Spi -- ri -- tum
-        cre -- da -- mus om -- ni tem -- po -- re.
-        }
-
-\score	
-        {
-        % \transpose {    
-	\new ChoirStaff \with { \override StaffGrouper.staff-staff-spacing.basic-distance = #12 }
-	<<
-
-	\new Staff << \global
-	\new Voice="v3" {
-		\set Staff.midiInstrument = "reed organ"
-		\clef "G_8"
-		\tenor }
-	\new Lyrics \lyricsto "v3" {\lyricstenor }
-	>>
-        >>
-	% } % transpose
-	
-
-	\layout
-	{
-	indent = 0\cm
-	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
-	\context { \Score \override BarNumber.padding = #2 }
-	}
-    }
-
+\markup {
+\epsfile #X #100 "EPSs/5.eps"
+}
 
 
 %%%%%%%%%%%%%%%%%%%%  GLORIA PATRI DOMINO
@@ -1679,7 +1433,7 @@ lyricsbassus = \lyricmode {
 
 	\layout
 	{
-	indent = 1.8 \cm
+	%indent = 1.8 \cm
 %	\context { \Lyrics \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #2 }
 %	\context { \Lyrics \override LyricText.font-size = #1 }
 	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
@@ -1696,49 +1450,17 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AMEN
 
-
-global = {
-	\key c \major
-        \override Staff.TimeSignature.stencil = #'()
-        \set Score.timing = ##f
-	\time 6/4
-        }
-
-tenor =  \relative c'
-	{
-	\override Stem.transparent = ##t
-        f,4( g a g) f( g) \bar "||"	
-	}
-
-lyricstenor = \lyricmode {
-        A -- men.
-        }
-
-\score	
-        {
-        % \transpose {    
-	\new ChoirStaff \with { \override StaffGrouper.staff-staff-spacing.basic-distance = #12 }
-	<<
-
-	\new Staff << \global
-	\new Voice="v3" {
-		\set Staff.midiInstrument = "reed organ"
-		\clef "G_8"
-		\tenor }
-	\new Lyrics \lyricsto "v3" {\lyricstenor }
-	>>
-        >>
-	% } % transpose
-	
-
-	\layout
-	{
-	indent = 0\cm
-	\context { \Staff \override TimeSignature.break-visibility = #end-of-line-invisible }
-	\context { \Score \override BarNumber.padding = #2 }
-	}
-    }
-
+\markup {
+\epsfile #Y #12 "EPSs/Amen.eps"
+}
 
 
 % EOF
+
+
+%{
+convert-ly (GNU LilyPond) 2.23.1  convert-ly: Elaborazione di «»...
+Conversione in corso: 2.19.2, 2.19.7, 2.19.11, 2.19.16, 2.19.22,
+2.19.24, 2.19.28, 2.19.29, 2.19.32, 2.19.39, 2.19.40, 2.19.46,
+2.19.49, 2.20.0, 2.21.0, 2.21.2, 2.23.1
+%}
