@@ -2,7 +2,7 @@
 \include "deutsch.ly"
 #(set-global-staff-size 15)
 #(set-default-paper-size "letter")
-%#(ly:set-option 'point-and-click #f)
+#(ly:set-option 'point-and-click #f)
 
 \header
 {
