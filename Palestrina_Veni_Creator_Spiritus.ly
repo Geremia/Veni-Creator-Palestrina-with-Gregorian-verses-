@@ -8,7 +8,6 @@
 {
   title="Veni Creator Spiritus"
   composer="Giovanni Pierluigi da Palestrina"
-  tagline= ""
 }
 
 \markup {
@@ -277,7 +276,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v1" {
 		\set Staff.instrumentName="Cantus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin
 		\cantus }
 	\new Lyrics \lyricsto "v1" {\lyricscantus }
@@ -287,7 +286,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v2" {
 		\set Staff.instrumentName="Altus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
                 \clef violin % "G_8"
 		\altus}
 	\new Lyrics \lyricsto "v2" {\lyricsaltus }
@@ -297,7 +296,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v3" {
 		\set Staff.instrumentName="Tenor"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\tenor }
 	\new Lyrics \lyricsto "v3" {\lyricstenor }
@@ -307,7 +306,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v4" {
 		\set Staff.instrumentName="Bassus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef bass 
 		\bassus }
 	\new Lyrics \lyricsto "v4" {\lyricsbassus}
@@ -336,6 +335,7 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   QUI PARACLITUS DICERIS - PLAINCHANT
 
+\pageBreak
 \markup {
   \epsfile #Y #24 "EPSs/1.eps"
 }
@@ -593,7 +593,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v1" {
 		\set Staff.instrumentName="Cantus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin
 		\cantus }
 	\new Lyrics \lyricsto "v1" {\lyricscantus }
@@ -602,7 +602,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v2" {
 		\set Staff.instrumentName="Altus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin % "G_8"
 		\altus}
 	\new Lyrics \lyricsto "v2" {\lyricsaltus }
@@ -612,7 +612,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v3" {
 		\set Staff.instrumentName="Tenor"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\tenor }
 	\new Lyrics \lyricsto "v3" {\lyricstenor }
@@ -622,7 +622,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v4" {
 		\set Staff.instrumentName="Bassus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef bass
 		\bassus }
 	\new Lyrics \lyricsto "v4" {\lyricsbassus }
@@ -650,8 +650,9 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ACCENDE LUMEN SENSIBUS - PLAINCHANT
 
+\pageBreak
 \markup {
-\epsfile #X #100 "EPSs/3.eps"
+\epsfile #Y #24 "EPSs/3.eps"
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%   HOSTEM REPELLAS LONGIUS
@@ -983,7 +984,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v2" {
 		\set Staff.instrumentName="Altus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin % "G_8"
 		\altus}
 	\new Lyrics \lyricsto "v2" {\lyricsaltus }
@@ -993,7 +994,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v3" {
 		\set Staff.instrumentName="Tenor I"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\tenor }
 	\new Lyrics \lyricsto "v3" {\lyricstenor }
@@ -1003,7 +1004,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v5" {
 		\set Staff.instrumentName="Tenor II"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\quintus }
 	\new Lyrics \lyricsto "v5" {\lyricsquintus }
@@ -1013,7 +1014,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v4" {
 		\set Staff.instrumentName="Bassus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef bass
 		\bassus }
 	\new Lyrics \lyricsto "v4" {\lyricsbassus }
@@ -1041,9 +1042,9 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PER TE SCIAMUS DA PATRE - PLAINCHANT
 
-
+\pageBreak
 \markup {
-\epsfile #X #100 "EPSs/5.eps"
+\epsfile #Y #24 "EPSs/5.eps"
 }
 
 
@@ -1382,7 +1383,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v1" {
 	  \set Staff.instrumentName= "Cantus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin 
 		\cantus}
 	\new Lyrics \lyricsto "v1" {\lyricscantus }
@@ -1392,7 +1393,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v2" {
 	  \set Staff.instrumentName= "Altus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef violin % "G_8"
 		\altus}
 	\new Lyrics \lyricsto "v2" {\lyricsaltus }
@@ -1402,7 +1403,7 @@ lyricsbassus = \lyricmode {
 	\new Staff <<\global
 	\new Voice="v3" {
 	  \set Staff.instrumentName= "Tenor I"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\tenor }
 	\new Lyrics \lyricsto "v3" {\lyricstenor }
@@ -1412,7 +1413,7 @@ lyricsbassus = \lyricmode {
 	\new Staff << \global
 	\new Voice="v5" {
 	  \set Staff.instrumentName= "Tenor II"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef "G_8"
 		\quintus}
 	\new Lyrics \lyricsto "v5" {\lyricsquintus }
@@ -1422,7 +1423,7 @@ lyricsbassus = \lyricmode {
 	\new Staff <<\global
 	\new Voice="v4" {
 	  \set Staff.instrumentName= "Bassus"
-		\set Staff.midiInstrument = "reed organ"
+		\set Staff.midiInstrument = "choir aahs"
 		\clef bass
 		\bassus }
 	\new Lyrics \lyricsto "v4" {\lyricsbassus}
@@ -1454,9 +1455,7 @@ lyricsbassus = \lyricmode {
 \epsfile #Y #12 "EPSs/Amen.eps"
 }
 
-
 % EOF
-
 
 %{
 convert-ly (GNU LilyPond) 2.23.1  convert-ly: Elaborazione di «»...
