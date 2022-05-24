@@ -1451,6 +1451,7 @@ lyricsbassus = \lyricmode {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AMEN
 
+\noPageBreak
 \markup {
 \epsfile #Y #12 "EPSs/Amen.eps"
 }
