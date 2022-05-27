@@ -44,7 +44,6 @@ global = {
         \newSpacingSection
         \set Score.currentBarNumber = #1
         \set Score.measureLength = #(ly:make-moment 2/1)
-        \skip 1*2*31 \bar "|."
         % \time 3/1 \once \override Score.TimeSignature.style = #'single-digit \newSpacingSection
 	}
 
@@ -96,7 +95,7 @@ cantus =  \relative c''
 	g\breve
 %30
 	d'1. d2 |
-	h\breve |
+	h\breve \bar "|."
 	}
 
         
@@ -388,7 +387,7 @@ cantus =  \relative c''
 %35
 	c1 h~ |
 	h2 a4 g a2 a
-	h\breve |
+	h\breve \bar "|."
 	}
 
 
@@ -662,7 +661,6 @@ lyricsbassus = \lyricmode {
 global = {
 	\key c \major
 	\time 2/2 \set Score.measureLength = #(ly:make-moment 2/1)
-        \skip 1*2*47 \bar "|."
 	}
 
 	ficta = { \once \set suggestAccidentals = ##t }
@@ -732,7 +730,7 @@ altus =  \relative c'
 %45
 	a4 h c d e1 |
 	f2 g1 fis2
-	g\breve |
+	g\breve  \bar "|."
 	}
 
 
@@ -1054,7 +1052,6 @@ lyricsbassus = \lyricmode {
 global = {
 	\key c \major
         \time 2/2 \set Score.measureLength = #(ly:make-moment 2/1)
-        \skip 1*2*39  \bar "|."
 	}
 
         
@@ -1105,7 +1102,7 @@ cantus  =  \relative c''
 	h2 c1 h2
 	a1 g
 	d'1. a2
-	h\breve |
+	h\breve  \bar "|."
 	}
         
 
