@@ -17,10 +17,9 @@
 \paper
 	{
 	%annotate-spacing = ##t
-	top-margin = 0.5 \in
-	bottom-margin = 0.5 \in
-	left-margin = 0.5 \in
-	right-margin = 0.5 \in
+	outer-margin = 0.5 \in
+	inner-margin = 1 \in
+	two-sided = ##t
 	ragged-bottom = ##f
 	ragged-last-bottom = ##t
         print-page-number = ##f
